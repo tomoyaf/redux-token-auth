@@ -13,6 +13,7 @@ export interface User {
   readonly isLoading: boolean
   readonly hasVerificationBeenAttempted: boolean
   readonly attributes: UserAttributes
+  readonly error: any
 }
 
 export interface ReduxTokenAuthState {
@@ -114,6 +115,7 @@ export interface RegistrationRequestSucceededAction {
 
 export interface RegistrationRequestFailedAction {
   readonly type: REGISTRATION_REQUEST_FAILED
+  readonly error: any
 }
 
 export interface VerifyTokenRequestSentAction {
@@ -144,6 +146,7 @@ export interface SignInRequestSucceededAction {
 
 export interface SignInRequestFailedAction {
   readonly type: SIGNIN_REQUEST_FAILED
+  readonly error: any
 }
 
 export interface SignOutRequestSentAction {
@@ -156,6 +159,7 @@ export interface SignOutRequestSucceededAction {
 
 export interface SignOutRequestFailedAction {
   readonly type: SIGNOUT_REQUEST_FAILED
+  readonly error: any
 }
 
 export interface SetHasVerificationBeenAttemptedAction {
