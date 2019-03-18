@@ -23,7 +23,6 @@ const {
 } = initialState
 
 const currentUser = (state: User = initialUser, action: ReduxAction): User => {
-  const { error } = action;
   switch (action.type) {
     case REGISTRATION_REQUEST_SENT:
     case VERIFY_TOKEN_REQUEST_SENT:
@@ -59,14 +58,14 @@ const currentUser = (state: User = initialUser, action: ReduxAction): User => {
     case REGISTRATION_REQUEST_FAILED:
       return {
         ...state,
-        error,
+        error: action.error,
       }
     case SIGNIN_REQUEST_FAILED:
       return {
         ...state,
         isLoading: false,
         isSignedIn: false,
-        error,
+        error: action.error,
       }
     case SIGNOUT_REQUEST_SUCCEEDED:
       const userAttributeKeys: string[] = Object.keys(state.attributes)
@@ -89,7 +88,7 @@ const currentUser = (state: User = initialUser, action: ReduxAction): User => {
       return {
         ...state,
         isLoading: false,
-        error,
+        error: action.error,
       }
     case SET_HAS_VERIFICATION_BEEN_ATTEMPTED:
       return {
