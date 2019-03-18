@@ -37,8 +37,8 @@ export const registrationRequestSucceeded = (
   }
 });
 
-export const registrationRequestFailed = (): RegistrationRequestFailedAction => ({
-  type: REGISTRATION_REQUEST_FAILED
+export const registrationRequestFailed = (error: any): RegistrationRequestFailedAction => ({
+  type: REGISTRATION_REQUEST_FAILED, error
 });
 
 export const verifyTokenRequestSent = (): VerifyTokenRequestSentAction => ({
@@ -71,8 +71,8 @@ export const signInRequestSucceeded = (
   }
 });
 
-export const signInRequestFailed = (): SignInRequestFailedAction => ({
-  type: SIGNIN_REQUEST_FAILED
+export const signInRequestFailed = (error: any): SignInRequestFailedAction => ({
+  type: SIGNIN_REQUEST_FAILED, error
 });
 
 export const signOutRequestSent = (): SignOutRequestSentAction => ({
@@ -83,8 +83,8 @@ export const signOutRequestSucceeded = (): SignOutRequestSucceededAction => ({
   type: SIGNOUT_REQUEST_SUCCEEDED
 });
 
-export const signOutRequestFailed = (): SignOutRequestFailedAction => ({
-  type: SIGNOUT_REQUEST_FAILED
+export const signOutRequestFailed = (error: any): SignOutRequestFailedAction => ({
+  type: SIGNOUT_REQUEST_FAILED, error
 });
 
 export const setHasVerificationBeenAttempted = (
@@ -138,8 +138,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(registrationRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(registrationRequestFailed());
-        throw error;
+        dispatch(registrationRequestFailed(error));
       }
     };
 
@@ -185,8 +184,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(signInRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(signInRequestFailed());
-        throw error;
+        dispatch(signInRequestFailed(error));
       }
     };
 
@@ -208,8 +206,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         deleteAuthHeadersFromDeviceStorage(Storage);
         dispatch(signOutRequestSucceeded());
       } catch (error) {
-        dispatch(signOutRequestFailed());
-        throw error;
+        dispatch(signOutRequestFailed(error));
       }
     };
 
