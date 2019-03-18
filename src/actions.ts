@@ -138,7 +138,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(registrationRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(registrationRequestFailed(error));
+        dispatch(registrationRequestFailed(error.response));
       }
     };
 
@@ -184,7 +184,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(signInRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(signInRequestFailed(error));
+        dispatch(signInRequestFailed(error.response));
       }
     };
 
@@ -206,7 +206,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         deleteAuthHeadersFromDeviceStorage(Storage);
         dispatch(signOutRequestSucceeded());
       } catch (error) {
-        dispatch(signOutRequestFailed(error));
+        dispatch(signOutRequestFailed(error.response));
       }
     };
 
