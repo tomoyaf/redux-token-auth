@@ -6,7 +6,8 @@ var initialState = {
         isLoading: false,
         hasVerificationBeenAttempted: false,
         attributes: {},
-    },
+        error: undefined
+    }
 };
 exports.default = initialState;
 //# sourceMappingURL=initial-state.js.map

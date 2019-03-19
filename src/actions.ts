@@ -37,8 +37,11 @@ export const registrationRequestSucceeded = (
   }
 });
 
-export const registrationRequestFailed = (error: any): RegistrationRequestFailedAction => ({
-  type: REGISTRATION_REQUEST_FAILED, error
+export const registrationRequestFailed = (
+  error: any
+): RegistrationRequestFailedAction => ({
+  type: REGISTRATION_REQUEST_FAILED,
+  error
 });
 
 export const verifyTokenRequestSent = (): VerifyTokenRequestSentAction => ({
@@ -72,7 +75,8 @@ export const signInRequestSucceeded = (
 });
 
 export const signInRequestFailed = (error: any): SignInRequestFailedAction => ({
-  type: SIGNIN_REQUEST_FAILED, error
+  type: SIGNIN_REQUEST_FAILED,
+  error
 });
 
 export const signOutRequestSent = (): SignOutRequestSentAction => ({
@@ -83,8 +87,11 @@ export const signOutRequestSucceeded = (): SignOutRequestSucceededAction => ({
   type: SIGNOUT_REQUEST_SUCCEEDED
 });
 
-export const signOutRequestFailed = (error: any): SignOutRequestFailedAction => ({
-  type: SIGNOUT_REQUEST_FAILED, error
+export const signOutRequestFailed = (
+  error: any
+): SignOutRequestFailedAction => ({
+  type: SIGNOUT_REQUEST_FAILED,
+  error
 });
 
 export const setHasVerificationBeenAttempted = (
@@ -138,7 +145,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(registrationRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(registrationRequestFailed(error.response));
+        dispatch(registrationRequestFailed(error));
       }
     };
 
@@ -184,7 +191,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         );
         dispatch(signInRequestSucceeded(userAttributesToSave));
       } catch (error) {
-        dispatch(signInRequestFailed(error.response));
+        dispatch(signInRequestFailed(error));
       }
     };
 
@@ -206,7 +213,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
         deleteAuthHeadersFromDeviceStorage(Storage);
         dispatch(signOutRequestSucceeded());
       } catch (error) {
-        dispatch(signOutRequestFailed(error.response));
+        dispatch(signOutRequestFailed(error));
       }
     };
 

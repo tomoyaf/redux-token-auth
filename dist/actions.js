@@ -14,8 +14,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -52,8 +52,9 @@ exports.registrationRequestSucceeded = function (userAttributes) { return ({
         userAttributes: userAttributes
     }
 }); };
-exports.registrationRequestFailed = function () { return ({
-    type: types_1.REGISTRATION_REQUEST_FAILED
+exports.registrationRequestFailed = function (error) { return ({
+    type: types_1.REGISTRATION_REQUEST_FAILED,
+    error: error
 }); };
 exports.verifyTokenRequestSent = function () { return ({
     type: types_1.VERIFY_TOKEN_REQUEST_SENT
@@ -76,8 +77,9 @@ exports.signInRequestSucceeded = function (userAttributes) { return ({
         userAttributes: userAttributes
     }
 }); };
-exports.signInRequestFailed = function () { return ({
-    type: types_1.SIGNIN_REQUEST_FAILED
+exports.signInRequestFailed = function (error) { return ({
+    type: types_1.SIGNIN_REQUEST_FAILED,
+    error: error
 }); };
 exports.signOutRequestSent = function () { return ({
     type: types_1.SIGNOUT_REQUEST_SENT
@@ -85,8 +87,9 @@ exports.signOutRequestSent = function () { return ({
 exports.signOutRequestSucceeded = function () { return ({
     type: types_1.SIGNOUT_REQUEST_SUCCEEDED
 }); };
-exports.signOutRequestFailed = function () { return ({
-    type: types_1.SIGNOUT_REQUEST_FAILED
+exports.signOutRequestFailed = function (error) { return ({
+    type: types_1.SIGNOUT_REQUEST_FAILED,
+    error: error
 }); };
 exports.setHasVerificationBeenAttempted = function (hasVerificationBeenAttempted) { return ({
     type: types_1.SET_HAS_VERIFICATION_BEEN_ATTEMPTED,
@@ -135,8 +138,8 @@ var generateAuthActions = function (config) {
                             return [3 /*break*/, 4];
                         case 3:
                             error_1 = _a.sent();
-                            dispatch(exports.registrationRequestFailed());
-                            throw error_1;
+                            dispatch(exports.registrationRequestFailed(error_1));
+                            return [3 /*break*/, 4];
                         case 4: return [2 /*return*/];
                     }
                 });
@@ -205,8 +208,8 @@ var generateAuthActions = function (config) {
                             return [3 /*break*/, 4];
                         case 3:
                             error_3 = _a.sent();
-                            dispatch(exports.signInRequestFailed());
-                            throw error_3;
+                            dispatch(exports.signInRequestFailed(error_3));
+                            return [3 /*break*/, 4];
                         case 4: return [2 /*return*/];
                     }
                 });
@@ -249,8 +252,8 @@ var generateAuthActions = function (config) {
                             return [3 /*break*/, 7];
                         case 6:
                             error_4 = _c.sent();
-                            dispatch(exports.signOutRequestFailed());
-                            throw error_4;
+                            dispatch(exports.signOutRequestFailed(error_4));
+                            return [3 /*break*/, 7];
                         case 7: return [2 /*return*/];
                     }
                 });

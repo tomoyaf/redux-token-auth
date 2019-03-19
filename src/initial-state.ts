@@ -1,6 +1,4 @@
-import {
-  ReduxTokenAuthState
-} from './types'
+import { ReduxTokenAuthState } from './types';
 
 const initialState: ReduxTokenAuthState = {
   currentUser: {
@@ -8,7 +6,8 @@ const initialState: ReduxTokenAuthState = {
     isLoading: false,
     hasVerificationBeenAttempted: false,
     attributes: {},
-  },
-}
+    error: undefined
+  }
+};
 
-export default initialState
+export default initialState;
