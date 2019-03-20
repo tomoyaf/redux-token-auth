@@ -77,6 +77,7 @@ exports.signInRequestSucceeded = function (userAttributes) { return ({
         userAttributes: userAttributes
     }
 }); };
+exports.resetErrors = function () { return ({ type: types_1.RESET_ERRORS }); };
 exports.signInRequestFailed = function (error) { return ({
     type: types_1.SIGNIN_REQUEST_FAILED,
     error: error
@@ -293,7 +294,8 @@ var generateAuthActions = function (config) {
         verifyToken: verifyToken,
         signInUser: signInUser,
         signOutUser: signOutUser,
-        verifyCredentials: verifyCredentials
+        verifyCredentials: verifyCredentials,
+        resetErrors: exports.resetErrors
     };
 };
 exports.default = generateAuthActions;

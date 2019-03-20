@@ -8,8 +8,8 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("../../types");
 var initial_state_1 = require("../../initial-state");
+var types_1 = require("../../types");
 var initialUser = initial_state_1.default.currentUser;
 var currentUser = function (state, action) {
     if (state === void 0) { state = initialUser; }
@@ -22,8 +22,9 @@ var currentUser = function (state, action) {
         case types_1.VERIFY_TOKEN_REQUEST_SUCCEEDED:
             return __assign({}, state, { attributes: __assign({}, action.payload.userAttributes), isLoading: false, isSignedIn: true, hasVerificationBeenAttempted: true });
         case types_1.REGISTRATION_REQUEST_SUCCEEDED:
+            return __assign({}, state, { error: undefined });
         case types_1.SIGNIN_REQUEST_SUCCEEDED:
-            return __assign({}, state, { attributes: __assign({}, action.payload.userAttributes), isLoading: false, isSignedIn: true });
+            return __assign({}, state, { attributes: __assign({}, action.payload.userAttributes), isLoading: false, isSignedIn: true, error: undefined });
         case types_1.VERIFY_TOKEN_REQUEST_FAILED:
             return __assign({}, state, { isLoading: false, isSignedIn: false, hasVerificationBeenAttempted: true });
         case types_1.REGISTRATION_REQUEST_FAILED:
@@ -36,11 +37,13 @@ var currentUser = function (state, action) {
                 var _a;
                 return __assign({}, accumulatedNullUserAttributes, (_a = {}, _a[currentUserAttributeKey] = null, _a));
             }, {});
-            return __assign({}, state, { attributes: allNullUserAttributes, isLoading: false, isSignedIn: false });
+            return __assign({}, state, { attributes: allNullUserAttributes, isLoading: false, isSignedIn: false, error: undefined });
         case types_1.SIGNOUT_REQUEST_FAILED:
             return __assign({}, state, { isLoading: false, error: action.error });
         case types_1.SET_HAS_VERIFICATION_BEEN_ATTEMPTED:
             return __assign({}, state, { hasVerificationBeenAttempted: action.payload.hasVerificationBeenAttempted });
+        case types_1.RESET_ERRORS:
+            return __assign({}, state, { error: undefined });
         default:
             return state;
     }

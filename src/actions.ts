@@ -9,7 +9,7 @@ import {
 import {
     ActionsExport, AuthResponse, DeviceStorage, REGISTRATION_REQUEST_FAILED,
     REGISTRATION_REQUEST_SENT, REGISTRATION_REQUEST_SUCCEEDED, RegistrationRequestFailedAction,
-    RegistrationRequestSentAction, RegistrationRequestSucceededAction,
+    RegistrationRequestSentAction, RegistrationRequestSucceededAction, RESET_ERRORS,
     SET_HAS_VERIFICATION_BEEN_ATTEMPTED, SetHasVerificationBeenAttemptedAction,
     SIGNIN_REQUEST_FAILED, SIGNIN_REQUEST_SENT, SIGNIN_REQUEST_SUCCEEDED, SignInRequestFailedAction,
     SignInRequestSentAction, SignInRequestSucceededAction, SIGNOUT_REQUEST_FAILED,
@@ -73,6 +73,7 @@ export const signInRequestSucceeded = (
     userAttributes
   }
 });
+export const resetErrors = () => ({ type: RESET_ERRORS });
 
 export const signInRequestFailed = (error: any): SignInRequestFailedAction => ({
   type: SIGNIN_REQUEST_FAILED,
@@ -235,7 +236,8 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
     verifyToken,
     signInUser,
     signOutUser,
-    verifyCredentials
+    verifyCredentials,
+    resetErrors
   };
 };
 
