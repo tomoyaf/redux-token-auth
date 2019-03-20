@@ -206,7 +206,10 @@ export type ReduxAsyncAction = (
   input?: any
 ) => (dispatch: Dispatch<{}>) => Promise<void>;
 
-export type VerifyCredentialsFunction = (store: Store<{}>) => void;
+export type VerifyCredentialsFunction = (
+  store: Store<{}>,
+  urlParams: any
+) => void;
 
 export interface ActionsExport {
   readonly registerUser: ReduxAsyncAction;

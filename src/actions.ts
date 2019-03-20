@@ -218,13 +218,22 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
       }
     };
 
-  const verifyCredentials = async (store: Store<{}>): Promise<void> => {
+  const verifyCredentials = async (
+    store: Store<{}>,
+    urlParams: any
+  ): Promise<void> => {
+    let verificationParams: VerificationParams = {
+      "access-token": (await Storage.getItem("access-token")) as string,
+      client: (await Storage.getItem("client")) as string,
+      uid: (await Storage.getItem("uid")) as string
+    };
     if (await Storage.getItem("access-token")) {
-      const verificationParams: VerificationParams = {
-        "access-token": (await Storage.getItem("access-token")) as string,
-        client: (await Storage.getItem("client")) as string,
-        uid: (await Storage.getItem("uid")) as string
-      };
+      const keys = ["access-token", "client", "uid"];
+      if (keys.every(key => key in urlParams)) {
+        for (let key of keys) {
+          verificationParams[key] = urlParams[key];
+        }
+      }
       store.dispatch<any>(verifyToken(verificationParams));
     } else {
       store.dispatch(setHasVerificationBeenAttempted(true));

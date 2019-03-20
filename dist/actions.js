@@ -261,31 +261,39 @@ var generateAuthActions = function (config) {
             });
         };
     };
-    var verifyCredentials = function (store) { return __awaiter(_this, void 0, void 0, function () {
-        var verificationParams, _a, _b;
+    var verifyCredentials = function (store, urlParams) { return __awaiter(_this, void 0, void 0, function () {
+        var verificationParams, _a, _b, keys, _i, keys_1, key;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, Storage.getItem("access-token")];
-                case 1:
-                    if (!_c.sent()) return [3 /*break*/, 5];
+                case 0:
                     _a = {};
                     _b = "access-token";
                     return [4 /*yield*/, Storage.getItem("access-token")];
-                case 2:
+                case 1:
                     _a[_b] = (_c.sent());
                     return [4 /*yield*/, Storage.getItem("client")];
-                case 3:
+                case 2:
                     _a.client = (_c.sent());
                     return [4 /*yield*/, Storage.getItem("uid")];
-                case 4:
+                case 3:
                     verificationParams = (_a.uid = (_c.sent()),
                         _a);
-                    store.dispatch(verifyToken(verificationParams));
-                    return [3 /*break*/, 6];
-                case 5:
-                    store.dispatch(exports.setHasVerificationBeenAttempted(true));
-                    _c.label = 6;
-                case 6: return [2 /*return*/];
+                    return [4 /*yield*/, Storage.getItem("access-token")];
+                case 4:
+                    if (_c.sent()) {
+                        keys = ["access-token", "client", "uid"];
+                        if (keys.every(function (key) { return key in urlParams; })) {
+                            for (_i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+                                key = keys_1[_i];
+                                verificationParams[key] = urlParams[key];
+                            }
+                        }
+                        store.dispatch(verifyToken(verificationParams));
+                    }
+                    else {
+                        store.dispatch(exports.setHasVerificationBeenAttempted(true));
+                    }
+                    return [2 /*return*/];
             }
         });
     }); };
