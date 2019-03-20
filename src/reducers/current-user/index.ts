@@ -30,7 +30,8 @@ const currentUser = (state: User = initialUser, action: ReduxAction): User => {
     case REGISTRATION_REQUEST_SUCCEEDED:
       return {
         ...state,
-        error: undefined
+        error: undefined,
+        isLoading: false
       };
     case SIGNIN_REQUEST_SUCCEEDED:
       return {
