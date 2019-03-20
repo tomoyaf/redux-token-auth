@@ -31,7 +31,7 @@ const currentUser = (state: User = initialUser, action: ReduxAction): User => {
       return {
         ...state,
         error: undefined,
-        isLoading: false
+        emailHasSent: true
       };
     case SIGNIN_REQUEST_SUCCEEDED:
       return {

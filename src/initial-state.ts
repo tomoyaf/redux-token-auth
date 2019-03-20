@@ -4,6 +4,7 @@ const initialState: ReduxTokenAuthState = {
   currentUser: {
     isSignedIn: false,
     isLoading: false,
+    emailHasSent: false,
     hasVerificationBeenAttempted: false,
     attributes: {},
     error: undefined
