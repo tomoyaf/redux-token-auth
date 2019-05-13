@@ -184,6 +184,10 @@ export interface SignOutRequestFailedAction {
   readonly error: any;
 }
 
+export interface SignOutLocalRequestAction {
+  readonly type: SIGNOUT_LOCAL_REQUEST;
+}
+
 export interface SetHasVerificationBeenAttemptedAction {
   readonly type: SET_HAS_VERIFICATION_BEEN_ATTEMPTED;
   readonly payload: {
@@ -204,6 +208,7 @@ export type ReduxAction =
   | SignOutRequestSentAction
   | SignOutRequestSucceededAction
   | SignOutRequestFailedAction
+  | SignOutLocalRequestAction
   | SetHasVerificationBeenAttemptedAction
   | ResetErrors;
 
