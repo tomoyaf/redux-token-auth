@@ -105,7 +105,7 @@ export const setHasVerificationBeenAttempted = (
   }
 });
 
-export const signOutLocalRequest = () => ({ tpye: SIGNOUT_LOCAL_REQUEST });
+export const signOutLocalRequest = (): any => ({ tpye: SIGNOUT_LOCAL_REQUEST });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Async Redux Thunk actions:
