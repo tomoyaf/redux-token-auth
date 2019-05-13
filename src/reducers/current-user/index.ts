@@ -20,7 +20,7 @@ const currentUser = (state: User = initialUser, action: ReduxAction): User => {
         isLoading: true
       };
     case SIGNOUT_LOCAL_REQUEST:
-      return { ...state };
+      return { ...state, isSignedIn: false };
     case VERIFY_TOKEN_REQUEST_SUCCEEDED:
       return {
         ...state,

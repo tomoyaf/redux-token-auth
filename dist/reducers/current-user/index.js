@@ -20,7 +20,7 @@ var currentUser = function (state, action) {
         case types_1.SIGNOUT_REQUEST_SENT:
             return __assign({}, state, { isLoading: true });
         case types_1.SIGNOUT_LOCAL_REQUEST:
-            return __assign({}, state);
+            return __assign({}, state, { isSignedIn: false });
         case types_1.VERIFY_TOKEN_REQUEST_SUCCEEDED:
             return __assign({}, state, { attributes: __assign({}, action.payload.userAttributes), isLoading: false, isSignedIn: true, hasVerificationBeenAttempted: true });
         case types_1.REGISTRATION_REQUEST_SUCCEEDED:
