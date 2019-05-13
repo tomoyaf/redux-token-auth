@@ -262,32 +262,37 @@ var generateAuthActions = function (config) {
         };
     };
     var verifyCredentials = function (store, urlParams) { return __awaiter(_this, void 0, void 0, function () {
-        var verificationParams, _a, _b, keys, _i, keys_1, key;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
+        var verificationParams, _a, _b, keys, _i, keys_1, key, _c;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
                 case 0:
                     _a = {};
                     _b = "access-token";
                     return [4 /*yield*/, Storage.getItem("access-token")];
                 case 1:
-                    _a[_b] = (_c.sent());
+                    _a[_b] = (_d.sent());
                     return [4 /*yield*/, Storage.getItem("client")];
                 case 2:
-                    _a.client = (_c.sent());
+                    _a.client = (_d.sent());
                     return [4 /*yield*/, Storage.getItem("uid")];
                 case 3:
-                    verificationParams = (_a.uid = (_c.sent()),
+                    verificationParams = (_a.uid = (_d.sent()),
                         _a);
+                    keys = ["access-token", "client", "uid"];
+                    if (keys.every(function (key) { return key in urlParams; })) {
+                        for (_i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+                            key = keys_1[_i];
+                            verificationParams[key] = urlParams[key];
+                        }
+                    }
+                    _c = "access-token" in urlParams;
+                    if (_c) return [3 /*break*/, 5];
                     return [4 /*yield*/, Storage.getItem("access-token")];
                 case 4:
-                    if (_c.sent()) {
-                        keys = ["access-token", "client", "uid"];
-                        if (keys.every(function (key) { return key in urlParams; })) {
-                            for (_i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
-                                key = keys_1[_i];
-                                verificationParams[key] = urlParams[key];
-                            }
-                        }
+                    _c = (_d.sent());
+                    _d.label = 5;
+                case 5:
+                    if (_c) {
                         store.dispatch(verifyToken(verificationParams));
                     }
                     else {

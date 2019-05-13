@@ -227,13 +227,16 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
       client: (await Storage.getItem("client")) as string,
       uid: (await Storage.getItem("uid")) as string
     };
-    if (await Storage.getItem("access-token")) {
-      const keys = ["access-token", "client", "uid"];
-      if (keys.every(key => key in urlParams)) {
-        for (let key of keys) {
-          verificationParams[key] = urlParams[key];
-        }
+    const keys = ["access-token", "client", "uid"];
+    if (keys.every(key => key in urlParams)) {
+      for (let key of keys) {
+        verificationParams[key] = urlParams[key];
       }
+    }
+    if (
+      "access-token" in urlParams ||
+      (await Storage.getItem("access-token"))
+    ) {
       store.dispatch<any>(verifyToken(verificationParams));
     } else {
       store.dispatch(setHasVerificationBeenAttempted(true));
