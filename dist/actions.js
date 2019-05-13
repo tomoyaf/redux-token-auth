@@ -98,7 +98,7 @@ exports.setHasVerificationBeenAttempted = function (hasVerificationBeenAttempted
         hasVerificationBeenAttempted: hasVerificationBeenAttempted
     }
 }); };
-exports.signOutLocalRequest = function () { return ({ tpye: types_1.SIGNOUT_LOCAL_REQUEST }); };
+exports.signOutLocalRequest = function () { return ({ type: types_1.SIGNOUT_LOCAL_REQUEST }); };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Async Redux Thunk actions:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
