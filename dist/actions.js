@@ -302,11 +302,16 @@ var generateAuthActions = function (config) {
             }
         });
     }); };
+    var signOutUserLocal = function () { return function (dispatch) {
+        auth_1.deleteAuthHeaders();
+        auth_1.deleteAuthHeadersFromDeviceStorage(Storage);
+    }; };
     return {
         registerUser: registerUser,
         verifyToken: verifyToken,
         signInUser: signInUser,
         signOutUser: signOutUser,
+        signOutUserLocal: signOutUserLocal,
         verifyCredentials: verifyCredentials,
         resetErrors: exports.resetErrors
     };

@@ -217,6 +217,7 @@ export interface ActionsExport {
   readonly verifyToken: ReduxAsyncAction;
   readonly signInUser: ReduxAsyncAction;
   readonly signOutUser: ReduxAsyncAction;
+  readonly signOutUserLocal: any;
   readonly verifyCredentials: VerifyCredentialsFunction;
   readonly resetErrors: any;
 }

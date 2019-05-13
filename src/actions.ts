@@ -243,11 +243,17 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
     }
   };
 
+  const signOutUserLocal = () => (dispatch: any): any => {
+    deleteAuthHeaders();
+    deleteAuthHeadersFromDeviceStorage(Storage);
+  };
+
   return {
     registerUser,
     verifyToken,
     signInUser,
     signOutUser,
+    signOutUserLocal,
     verifyCredentials,
     resetErrors
   };
