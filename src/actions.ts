@@ -12,12 +12,13 @@ import {
     RegistrationRequestSentAction, RegistrationRequestSucceededAction, RESET_ERRORS,
     SET_HAS_VERIFICATION_BEEN_ATTEMPTED, SetHasVerificationBeenAttemptedAction,
     SIGNIN_REQUEST_FAILED, SIGNIN_REQUEST_SENT, SIGNIN_REQUEST_SUCCEEDED, SignInRequestFailedAction,
-    SignInRequestSentAction, SignInRequestSucceededAction, SIGNOUT_REQUEST_FAILED,
-    SIGNOUT_REQUEST_SENT, SIGNOUT_REQUEST_SUCCEEDED, SignOutRequestFailedAction,
-    SignOutRequestSentAction, SignOutRequestSucceededAction, UserAttributes,
-    UserRegistrationDetails, UserSignInCredentials, UserSignOutCredentials, VerificationParams,
-    VERIFY_TOKEN_REQUEST_FAILED, VERIFY_TOKEN_REQUEST_SENT, VERIFY_TOKEN_REQUEST_SUCCEEDED,
-    VerifyTokenRequestFailedAction, VerifyTokenRequestSentAction, VerifyTokenRequestSucceededAction
+    SignInRequestSentAction, SignInRequestSucceededAction, SIGNOUT_LOCAL_REQUEST,
+    SIGNOUT_REQUEST_FAILED, SIGNOUT_REQUEST_SENT, SIGNOUT_REQUEST_SUCCEEDED,
+    SignOutRequestFailedAction, SignOutRequestSentAction, SignOutRequestSucceededAction,
+    UserAttributes, UserRegistrationDetails, UserSignInCredentials, UserSignOutCredentials,
+    VerificationParams, VERIFY_TOKEN_REQUEST_FAILED, VERIFY_TOKEN_REQUEST_SENT,
+    VERIFY_TOKEN_REQUEST_SUCCEEDED, VerifyTokenRequestFailedAction, VerifyTokenRequestSentAction,
+    VerifyTokenRequestSucceededAction
 } from './types';
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,6 +104,8 @@ export const setHasVerificationBeenAttempted = (
     hasVerificationBeenAttempted
   }
 });
+
+export const signOutLocalRequest = () => ({ tpye: SIGNOUT_LOCAL_REQUEST });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Async Redux Thunk actions:
@@ -244,6 +247,7 @@ const generateAuthActions = (config: { [key: string]: any }): ActionsExport => {
   };
 
   const signOutUserLocal = () => (dispatch: any): any => {
+    dispatch(signOutLocalRequest());
     deleteAuthHeaders();
     deleteAuthHeadersFromDeviceStorage(Storage);
   };

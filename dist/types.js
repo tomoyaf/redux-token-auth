@@ -12,6 +12,7 @@ exports.SIGNIN_REQUEST_FAILED = "redux-token-auth/SIGNIN_REQUEST_FAILED";
 exports.SIGNOUT_REQUEST_SENT = "redux-token-auth/SIGNOUT_REQUEST_SENT";
 exports.SIGNOUT_REQUEST_SUCCEEDED = "redux-token-auth/SIGNOUT_REQUEST_SUCCEEDED";
 exports.SIGNOUT_REQUEST_FAILED = "redux-token-auth/SIGNOUT_REQUEST_FAILED";
+exports.SIGNOUT_LOCAL_REQUEST = "redux-token-auth/SIGNOUT_LOCAL_REQUEST";
 exports.SET_HAS_VERIFICATION_BEEN_ATTEMPTED = "redux-token-auth/SET_HAS_VERIFICATION_BEEN_ATTEMPTED";
 exports.RESET_ERRORS = "redux-token-auth/RESET_ERRORS";
 //# sourceMappingURL=types.js.map

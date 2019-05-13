@@ -98,6 +98,7 @@ exports.setHasVerificationBeenAttempted = function (hasVerificationBeenAttempted
         hasVerificationBeenAttempted: hasVerificationBeenAttempted
     }
 }); };
+exports.signOutLocalRequest = function () { return ({ tpye: types_1.SIGNOUT_LOCAL_REQUEST }); };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Async Redux Thunk actions:
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -303,6 +304,7 @@ var generateAuthActions = function (config) {
         });
     }); };
     var signOutUserLocal = function () { return function (dispatch) {
+        dispatch(exports.signOutLocalRequest());
         auth_1.deleteAuthHeaders();
         auth_1.deleteAuthHeadersFromDeviceStorage(Storage);
     }; };
